@@ -2,55 +2,166 @@
 
 void Dice::roll(int num_of_dice, int sides)
 {
-	for (int i = 1; i <= num_of_dice; i++)
+	if (disadvantage == true)
 	{
-		dice_roll = (rand() % sides + 1);
+		disadvantage_roll();
+	}
+	else
+	{
+		for (int i = 1; i <= num_of_dice; i++)
+		{
+			dice_roll = (rand() % sides + 1);
+		}
 	}
 }
 
 void Dice::roll_Dice(int num_of_dice, int sides)
 {
-	for (int i = 1; i <= num_of_dice; i++)
+	if (disadvantage == true) 
 	{
-		dice_roll = (rand() % sides + 1);
+		disadvantage_roll();
+		cout << "Rolling a " << num_of_dice << "d" << sides << " with disadvantage! \n";
+		cout << dice_roll << "...\n";
+	}
+	else
+	{
+		roll(num_of_dice, sides);
+		cout << "Rolling a " << num_of_dice << "d" << sides << "\n";
 		cout << dice_roll << "...\n";
 	}
 }
 
 
+void Dice::disadvantage_roll()
+{
+	int dice_roll_1; 
+	int dice_roll_2;
+	if (disadvantage == true)
+	{
+		for (int i = 1; i <= 1; i++)
+		{
+			dice_roll = (rand() % 20 + 1);
+		}
+
+		int dice_roll_1 = dice_roll;
+		for (int i = 1; i <= 1; i++)
+		{
+			dice_roll = (rand() % 20 + 1);
+		}
+
+		int dice_roll_2 = dice_roll;
+
+		if (dice_roll_1 <= dice_roll_2)
+		{
+			dice_roll = dice_roll_1;
+		}
+		else if (dice_roll_1 >= dice_roll_2)
+		{
+			dice_roll = dice_roll_2;
+		}
+	}
+}
+
 void Dice::stat_roll(Stats character, int stat, int num_of_dice, int sides)
 {
-	character.get_stat_bonus(stat);
-	if (stat_bonus == 0)
+	if (disadvantage == true)
 	{
-		cout << "Rolling a " << num_of_dice << "d" << sides << "\n";
+		disadvantage_player_roll(character, stat);
 	}
 	else
 	{
-		cout << "Rolling a " << num_of_dice << "d" << sides << " + " << stat_bonus << "\n";
+		character.get_stat_bonus(stat);
+	
+		if (stat_bonus == 0)
+		{
+			cout << "Rolling a " << num_of_dice << "d" << sides << "\n";
+		}
+		else
+		{
+			cout << "Rolling a " << num_of_dice << "d" << sides << " + " << stat_bonus << "\n";
+		}
+
+		roll(num_of_dice, sides);
+		dice_roll = dice_roll + stat_bonus;
+		cout << dice_roll << "...\n\n";
+		
+	}
+}
+
+void Dice::disadvantage_player_roll(Stats character, int stat)
+{
+	character.get_stat_bonus(stat);
+	int dice_roll_1;
+	int dice_roll_2;
+	roll(1, 20);
+	dice_roll_1 = dice_roll + stat_bonus;
+
+	roll(1, 20);
+	dice_roll_2 = dice_roll + stat_bonus;
+	
+	if (dice_roll_1 <= dice_roll_2)
+	{
+		dice_roll = dice_roll_1;
+	}
+	else if (dice_roll_1 >= dice_roll_2)
+	{
+		dice_roll = dice_roll_2;
 	}
 
-	roll(num_of_dice, sides);
-	cout << dice_roll + stat_bonus << "...\n\n";
-	dice_roll = dice_roll + stat_bonus;
+	if (stat_bonus == 0)
+	{
+		cout << "Rolling a " << 1 << "d" << 20 << " with disadvantage!\n";
+	}
+	else
+	{
+		cout << "Rolling a " << 1 << "d" << 20 << " + " << stat_bonus << " with disadvantage!\n";
+	}
+	cout << dice_roll << "...\n\n";
 }
 
 void Dice::Enemy_stat_roll(Enemies enemy, int stat, int num_of_dice, int sides)
 {
-	enemy.get_stat_bonus(stat);
-
-	if (stat_bonus == 0)
+	if (disadvantage == true)
 	{
-		cout << "Rolling a " << num_of_dice << "d" << sides << "\n";
+		disadvantage_enemy_roll(enemy, stat);
 	}
 	else
 	{
-		cout << "Rolling a " << num_of_dice << "d" << sides << "+ " << stat_bonus << "\n";
+		enemy.get_stat_bonus(stat);
+
+		if (stat_bonus == 0)
+		{
+			cout << "Rolling a " << num_of_dice << "d" << sides << "\n";
+		}
+		else
+		{
+			cout << "Rolling a " << num_of_dice << "d" << sides << "+ " << E_stat_bonus << "\n";
+		}
+
+		roll(num_of_dice, sides);
+		cout << dice_roll + E_stat_bonus << "...\n\n";
 	}
+}
 
-	roll(num_of_dice, sides);
-	cout << dice_roll + stat_bonus << "...\n\n";
-
+void Dice::disadvantage_enemy_roll(Enemies enemy, int stat)
+{
+	enemy.get_stat_bonus(stat);
+	int dice_roll_1;
+	int dice_roll_2;
+	roll(1, 20);
+	dice_roll_1 = dice_roll + E_stat_bonus;
+	roll(1, 20);
+	dice_roll_2 = dice_roll + E_stat_bonus;
+	
+	if (dice_roll_1 <= dice_roll_2)
+	{
+		dice_roll = dice_roll_1;
+	}
+	else if (dice_roll_1 >= dice_roll_2)
+	{
+		dice_roll = dice_roll_2;
+	}
+	cout << dice_roll << "...\n\n";
 }
 
 void Dice::Player_Attack_roll(Stats character, Enemies enemy, string weapon)
@@ -70,7 +181,7 @@ void Dice::Player_Attack_roll(Stats character, Enemies enemy, string weapon)
 	else if (dice_roll == 20)
 	{
 		crit = true;
-		cout << "Critical strike on the " << E_name << " !\n";
+		cout << "Critical strike on the " << E_name << "!\n";
 	}
 	else if (dice_roll == 1)
 	{
@@ -80,18 +191,18 @@ void Dice::Player_Attack_roll(Stats character, Enemies enemy, string weapon)
 		{
 			if (weapon_range >= 0 && weapon_range <= 10)
 			{
-				cout << "You Miss the wolf horribly!";
+				cout << "You weren't even close to hitting the wolf...lol!";
 			}
 			else if (weapon_range >= 60)
 			{
-				cout << "You were so off from your target that it's not even worth explaining...";
+				cout << "You were so off from your target that it's not even worth explaining...You Suck!";
 			}
 		}
 	}
 
 	else
 	{
-		cout << "You miss the " << E_name << "\n\n";
+		cout << "You miss the " << E_name << ".\n\n";
 	}
 }
 

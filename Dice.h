@@ -26,13 +26,17 @@ public:
 
 	void roll(int num_of_dice, int sides);
 
-
 	void roll_Dice(int num_of_dice, int sides);
 
+	void disadvantage_roll();
 
 	void stat_roll(Stats character, int stat, int num_of_dice, int sides);
 
+	void disadvantage_player_roll(Stats character, int stat);
+
 	void Enemy_stat_roll(Enemies enemy, int stat, int num_of_dice, int sides);
+
+	void disadvantage_enemy_roll(Enemies enemy, int stat);
 
 	void Player_Attack_roll(Stats character, Enemies enemy, string weapon);
 
