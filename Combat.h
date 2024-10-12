@@ -2,7 +2,6 @@
 #include <iostream>
 #include "Stats.h"
 #include "Dice.h"
-#include "Enemies.h"
 #include <string>
 using namespace std;
 extern int Distance;
@@ -27,11 +26,11 @@ public :
 
 	void Initiative_compare(int player, int enemy);
 	void check_player_distance();
-	void StartCombat(Stats player_character, Enemies enemy, Dice dice);
-	void setEnemyBehavior(Enemies enemy, Dice dice);
+	void StartCombat(Stats player_character, Enemy enemy, Dice dice);
+	void setEnemyBehavior(Enemy enemy, Dice dice);
 	void Set_Player_Combat_Options(int attack1, int attack2, int move1, int move2);
 	void PrintPlayerCombatOptions();
-	void Player_Select(Stats player, Enemies enemy, Dice dice);
+	void Player_Select(Stats player, Enemy enemy, Dice dice);
 	void Enemy_turn();
 	void Player_turn();
 	void Check_Distance();

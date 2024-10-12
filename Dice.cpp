@@ -35,7 +35,7 @@ void Dice::stat_roll(Stats character, int stat, int num_of_dice, int sides)
 	dice_roll = dice_roll + stat_bonus;
 }
 
-void Dice::Enemy_stat_roll(Enemies enemy, int stat, int num_of_dice, int sides)
+void Dice::Enemy_stat_roll(Enemy enemy, int stat, int num_of_dice, int sides)
 {
 	enemy.get_stat_bonus(stat);
 
@@ -53,7 +53,7 @@ void Dice::Enemy_stat_roll(Enemies enemy, int stat, int num_of_dice, int sides)
 
 }
 
-void Dice::Player_Attack_roll(Stats character, Enemies enemy, string weapon)
+void Dice::Player_Attack_roll(Stats character, Enemy enemy, string weapon)
 {
 	get_Weapon_Properties(weapon);
 	get_Weapon_Stat_Bonus(weapon);
@@ -95,7 +95,7 @@ void Dice::Player_Attack_roll(Stats character, Enemies enemy, string weapon)
 	}
 }
 
-void Dice::Player_Damage_roll(string weapon, Enemies enemy, Stats Player)
+void Dice::Player_Damage_roll(string weapon, Enemy enemy, Stats Player)
 {
 	get_Armor_Properties(armor1, Player);
 	get_Weapon_Properties(weapon);
@@ -133,7 +133,7 @@ void Dice::Player_Damage_roll(string weapon, Enemies enemy, Stats Player)
 
 }
 
-void Dice::Enemy_Attack_roll(Enemies enemy, string Enemy_weapon)
+void Dice::Enemy_Attack_roll(Enemy enemy, string Enemy_weapon)
 {
 	cout << "The " << E_name << " goes to attack you.\n";
 	roll(1, 20);
@@ -316,7 +316,7 @@ void Dice::set_Player_Initiative(Stats player, int dext)
 	P_initiative = player_dice_roll + stat_bonus;
 }
 
-void Dice::set_Enemy_Initiative(Enemies enemy, int Dex, string enemy_name)
+void Dice::set_Enemy_Initiative(Enemy enemy, int Dex, string enemy_name)
 {
 	enemy.get_stat_bonus(Dex);
 	roll(1, 20);

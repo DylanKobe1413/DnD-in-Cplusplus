@@ -41,7 +41,7 @@ void Combat::check_player_distance()
 
 
 
-void Combat::StartCombat(Stats player_character, Enemies enemy, Dice dice)
+void Combat::StartCombat(Stats player_character, Enemy enemy, Dice dice)
 {
 	combat = true;
 	
@@ -97,7 +97,7 @@ void Combat::StartCombat(Stats player_character, Enemies enemy, Dice dice)
 
 }
 
-void Combat::setEnemyBehavior(Enemies enemy, Dice dice)
+void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 {
 	if (E_name == "Wolf")
 	{
@@ -231,7 +231,7 @@ void Combat::PrintPlayerCombatOptions()
 	}
 }
 
-void Combat::Player_Select(Stats player, Enemies enemy, Dice dice)
+void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
 {
 	PrintPlayerCombatOptions();
 	cin >> input;
