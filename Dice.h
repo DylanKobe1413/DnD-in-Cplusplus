@@ -26,8 +26,7 @@ public:
 	void roll(int num_of_dice, int sides);
 
 	void roll_Dice(int num_of_dice, int sides);
-
-	void disadvantage_roll();
+	
 
 	void stat_roll(Stats character, int stat, int num_of_dice, int sides);
 
