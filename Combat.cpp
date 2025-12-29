@@ -104,7 +104,7 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 
 
 		//bite
-		E_attack1 = Wolf_weapon;
+		E_attack1 = E_weapon;
 		if (HP > 0 && E_HP > 0)
 		{
 			if (compare == false || E_turn == true)
@@ -329,9 +329,9 @@ void Combat::Player_turn()
 
 void Combat::Check_Distance()
 {
-	if (Distance < 0)
+	if (Distance <= 0)
 	{
-		Distance = 0;
+		Distance = 5;
 	}
 
 

@@ -25,7 +25,6 @@ public:
 
 	void roll(int num_of_dice, int sides);
 
-
 	void roll_Dice(int num_of_dice, int sides);
 	
 

@@ -1,5 +1,5 @@
 #include "Stats.h"
-
+// add a weight system?
 // set up the stats!
 void Stats::set_Stats()
 
