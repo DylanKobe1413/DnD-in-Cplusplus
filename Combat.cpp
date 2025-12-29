@@ -104,7 +104,7 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 
 
 		//bite
-		E_attack1 = Wolf_weapon;
+		E_attack1 = E_weapon;
 		if (HP > 0 && E_HP > 0)
 		{
 			if (compare == false || E_turn == true)
@@ -118,6 +118,9 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 							Check_Distance();
 							cout << "The Wolf rushes towards you...\n";
 							cout << "Distance between you and the wolf is now " << Distance << "\n\n";
+
+							if (Distance <= E_weapon_range)
+								dice.Enemy_Attack_roll(enemy, E_weapon);
 						}
 						else if (Distance < E_weapon_range)
 						{
@@ -126,12 +129,14 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 							cout << "Distance between you and the wolf is now " << Distance << "\n\n";
 						}
 				}
-				
-				dice.roll(1, 1);
-				// attempts an attack with bite
-				if (dice_roll == 1)
+				else if (Distance <= E_weapon_range)
 				{
-					dice.Enemy_Attack_roll(enemy, E_weapon);
+					dice.roll(1, 1);
+					// attempts an attack with bite
+					if (dice_roll == 1)
+					{
+						dice.Enemy_Attack_roll(enemy, E_weapon);
+					}
 				}
 			}
 		}
@@ -322,9 +327,9 @@ void Combat::Player_turn()
 
 void Combat::Check_Distance()
 {
-	if (Distance < 0)
+	if (Distance <= 0)
 	{
-		Distance = 0;
+		Distance = 5;
 	}
 
 
