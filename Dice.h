@@ -33,7 +33,7 @@ public:
 
 	void Enemy_stat_roll(Enemy enemy, int stat, int num_of_dice, int sides);
 
-	void Player_Attack_roll(Stats character, Enemies enemy, string weapon);
+	void Player_Attack_roll(Stats character, Enemy enemy, string weapon);
 
 	void Player_Damage_roll(string weapon, Enemy enemy, Stats Player);
 
