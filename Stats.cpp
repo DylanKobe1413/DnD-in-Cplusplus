@@ -227,6 +227,7 @@ void Enemy::set_Stats(string Enemy_Name)
 		E_Str = Wolf_Str, E_Dex = Wolf_Dex, E_Con = Wolf_Con, E_Int = Wolf_Int, E_Wis = Wolf_Wis, E_Cha = Wolf_Cha;
 		E_weapon = Wolf_weapon;
 		E_name = Enemy_Name;
+		E_weapon_range = 5;
 	}
 }
 
