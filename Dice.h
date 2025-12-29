@@ -3,7 +3,6 @@
 #include <ctime>
 #include <iostream>
 #include "Stats.h"
-#include "Enemies.h"
 #include <string>
 using namespace std;
 
@@ -32,17 +31,13 @@ public:
 
 	void stat_roll(Stats character, int stat, int num_of_dice, int sides);
 
-	void disadvantage_player_roll(Stats character, int stat);
-
-	void Enemy_stat_roll(Enemies enemy, int stat, int num_of_dice, int sides);
-
-	void disadvantage_enemy_roll(Enemies enemy, int stat);
+	void Enemy_stat_roll(Enemy enemy, int stat, int num_of_dice, int sides);
 
 	void Player_Attack_roll(Stats character, Enemies enemy, string weapon);
 
-	void Player_Damage_roll(string weapon, Enemies enemy, Stats Player);
+	void Player_Damage_roll(string weapon, Enemy enemy, Stats Player);
 
-	void Enemy_Attack_roll(Enemies enemy, string Enemy_weapon);
+	void Enemy_Attack_roll(Enemy enemy, string Enemy_weapon);
 
 	void Enemy_Damage_roll(string E_weapon);
 
@@ -59,7 +54,7 @@ public:
 
 	void set_Player_Initiative(Stats player, int dext);
 
-	void set_Enemy_Initiative(Enemies enemy, int Dex, string enemy_name);
+	void set_Enemy_Initiative(Enemy enemy, int Dex, string enemy_name);
 
 
 

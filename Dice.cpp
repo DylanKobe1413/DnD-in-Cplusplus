@@ -59,6 +59,7 @@ void Dice::disadvantage_roll()
 		{
 			dice_roll = dice_roll_2;
 		}
+		disadvantage = false;
 	}
 }
 
@@ -117,9 +118,10 @@ void Dice::disadvantage_player_roll(Stats character, int stat)
 		cout << "Rolling a " << 1 << "d" << 20 << " + " << stat_bonus << " with disadvantage!\n";
 	}
 	cout << dice_roll << "...\n\n";
+	disadvantage = false;
 }
 
-void Dice::Enemy_stat_roll(Enemies enemy, int stat, int num_of_dice, int sides)
+void Dice::Enemy_stat_roll(Enemy enemy, int stat, int num_of_dice, int sides)
 {
 	if (disadvantage == true)
 	{
@@ -162,9 +164,10 @@ void Dice::disadvantage_enemy_roll(Enemies enemy, int stat)
 		dice_roll = dice_roll_2;
 	}
 	cout << dice_roll << "...\n\n";
+	disadvantage = false;
 }
 
-void Dice::Player_Attack_roll(Stats character, Enemies enemy, string weapon)
+void Dice::Player_Attack_roll(Stats character, Enemy enemy, string weapon)
 {
 	get_Weapon_Properties(weapon);
 	get_Weapon_Stat_Bonus(weapon);
@@ -206,7 +209,7 @@ void Dice::Player_Attack_roll(Stats character, Enemies enemy, string weapon)
 	}
 }
 
-void Dice::Player_Damage_roll(string weapon, Enemies enemy, Stats Player)
+void Dice::Player_Damage_roll(string weapon, Enemy enemy, Stats Player)
 {
 	get_Armor_Properties(armor1, Player);
 	get_Weapon_Properties(weapon);
@@ -244,12 +247,12 @@ void Dice::Player_Damage_roll(string weapon, Enemies enemy, Stats Player)
 
 }
 
-void Dice::Enemy_Attack_roll(Enemies enemy, string Enemy_weapon)
+void Dice::Enemy_Attack_roll(Enemy enemy, string Enemy_weapon)
 {
 	cout << "The " << E_name << " goes to attack you.\n";
 	roll(1, 20);
 	dice_roll = dice_roll + E_weapon_hit_bonus;
-	if (dice_roll > AC)
+	if (dice_roll >= AC)
 	{
 		Enemy_Damage_roll(Enemy_weapon);
 	}
@@ -298,7 +301,7 @@ void Dice::get_Weapon_Properties(string weapon_name)
 		weapon_type = "piercing";
 		weapon_stat_bonus = "Dexterity";
 		weapon_catagory = "Martial";
-		weapon_range = 60;
+		weapon_range = 150; // range with disadvantage is 600!!!!!!!!
 		weapon_function = "Ranged";
 	}
 	else if (weapon_name == "Rapier")
@@ -427,7 +430,7 @@ void Dice::set_Player_Initiative(Stats player, int dext)
 	P_initiative = player_dice_roll + stat_bonus;
 }
 
-void Dice::set_Enemy_Initiative(Enemies enemy, int Dex, string enemy_name)
+void Dice::set_Enemy_Initiative(Enemy enemy, int Dex, string enemy_name)
 {
 	enemy.get_stat_bonus(Dex);
 	roll(1, 20);

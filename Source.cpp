@@ -82,7 +82,7 @@ int main()
 	srand((unsigned)time(NULL));
 	Dice Dice;
 	Stats Player_Stats;
-	Enemies Wolf;
+	Enemy Wolf;
 	Combat PlayervsWolf;
 
 	Player_Stats.set_Stats();
