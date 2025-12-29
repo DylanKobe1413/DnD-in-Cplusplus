@@ -75,7 +75,7 @@ int E_weapon_range;
 string E_name;
 
 // Combat variables for external usage.
-int Distance;
+
 
 int main()
 {
@@ -90,7 +90,7 @@ int main()
 	Wolf.set_Stats("Wolf");
 
 	
-	Distance = 60;
+	PlayervsWolf.set_distance(60);
 	Dice.set_Player_Initiative(Player_Stats, Dex);
 	Dice.set_Enemy_Initiative(Wolf, Wolf_Dex, wolf);
 	PlayervsWolf.Initiative_compare(P_initiative, E_initiative);

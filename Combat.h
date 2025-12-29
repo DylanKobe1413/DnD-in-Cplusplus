@@ -4,13 +4,13 @@
 #include "Dice.h"
 #include <string>
 using namespace std;
-extern int Distance;
+
 class Combat
 {
 
 private:
 	int input;
-
+	int distance;
 	bool combat;
 	bool compare;
 	bool P_turn;
@@ -23,7 +23,8 @@ private:
 	string E_attack1;
 	
 public :
-
+	void set_distance(int Distance);
+	int  get_distance();
 	void Initiative_compare(int player, int enemy);
 	void check_player_distance();
 	void StartCombat(Stats player_character, Enemy enemy, Dice dice);

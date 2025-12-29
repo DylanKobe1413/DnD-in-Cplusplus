@@ -1,5 +1,14 @@
 #include "Combat.h"
 
+void Combat::set_distance(int Distance)
+{
+	distance = Distance;
+}
+
+int Combat::get_distance()
+{
+	return distance;
+}
 
 void Combat::Initiative_compare(int player, int enemy)
 {
@@ -28,11 +37,11 @@ void Combat::Initiative_compare(int player, int enemy)
 
 void Combat::check_player_distance()
 {
-	if (weapon_function == "Ranged" && Distance > weapon_range )
+	if (weapon_function == "Ranged" && get_distance() > weapon_range)
 	{
 		P_attack1 = 0;
 	}
-	 if (weapon_function == "Ranged" && Distance <= 5)
+	 if (weapon_function == "Ranged" && get_distance() <= 5)
 	{
 		// make sure this works in combat AND stat rolls
 		disadvantage = true;
@@ -107,16 +116,16 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 		{
 			if (compare == false || E_turn == true)
 			{
-				if (Distance > E_weapon_range)
+				if (get_distance() > E_weapon_range)
 				{
 					dice.roll(1, 1);
 					if (dice_roll == 1)
 					{
 						cout << "The Wolf rushes towards you...\n";
-						Distance = Distance - E_speed;
+						set_distance(get_distance() - E_speed);
 						Check_Distance();
-						cout << "Distance between you and the wolf is now " << Distance << "\n\n";
-						if (Distance <= E_weapon_range)
+						cout << "Distance between you and the wolf is now " << get_distance() << "\n\n";
+						if (get_distance() <= E_weapon_range)
 						{
 							dice.roll(1, 1);
 							// attempts an attack with bite
@@ -130,7 +139,7 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 					}
 					
 				}
-				else if (Distance <= E_weapon_range)
+				else if (get_distance() <= E_weapon_range)
 				{
 					dice.roll(1, 1);
 					if (dice_roll == 1)
@@ -260,10 +269,10 @@ void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
 
 	case 3:
 		Player_turn();
-		Distance = Distance - speed;
+		set_distance(get_distance() - speed);
 		Check_Distance();
 		cout << "You move " << speed << " feet closer to the " << E_name << "\n";
-		cout << "You are now " << Distance << " feet away from the " << E_name << "\n\n";
+		cout << "You are now " << get_distance() << " feet away from the " << E_name << "\n\n";
 		P_move1 = 0, P_move2 = 0;
 		PrintPlayerCombatOptions();
 
@@ -285,10 +294,10 @@ void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
 
 	case 4:
 		Player_turn();
-		Distance = Distance + speed;
+		set_distance(get_distance() + speed);
 		Check_Distance();
 		cout << "You move " << speed << " feet away from the " << E_name << "\n";
-		cout << "You are now " << Distance << " feet away from the " << E_name << "\n\n";
+		cout << "You are now " << get_distance() << " feet away from the " << E_name << "\n\n";
 		P_move1 = 0, P_move2 = 0;
 		PrintPlayerCombatOptions();
 		cin >> input;
@@ -328,9 +337,9 @@ void Combat::Player_turn()
 
 void Combat::Check_Distance()
 {
-	if (Distance <= 0)
+	if (get_distance() <= 0)
 	{
-		Distance = 5;
+		set_distance(5);
 	}
 
 
