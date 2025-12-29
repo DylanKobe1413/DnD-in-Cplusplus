@@ -21,18 +21,19 @@ void Dice::roll_Dice(int num_of_dice, int sides)
 void Dice::stat_roll(Stats character, int stat, int num_of_dice, int sides)
 {
 	character.get_stat_bonus(stat);
+	roll(num_of_dice, sides);
 	if (stat_bonus == 0)
 	{
 		cout << "Rolling a " << num_of_dice << "d" << sides << "\n";
+		cout << dice_roll << "...\n\n";
 	}
 	else
 	{
 		cout << "Rolling a " << num_of_dice << "d" << sides << " + " << stat_bonus << "\n";
+		cout << "Roll result was " << dice_roll << "\n";
+		cout << dice_roll << " + " << stat_bonus << " = " << dice_roll + stat_bonus << "...\n\n";
+		dice_roll = dice_roll + stat_bonus;
 	}
-
-	roll(num_of_dice, sides);
-	cout << dice_roll + stat_bonus << "...\n\n";
-	dice_roll = dice_roll + stat_bonus;
 }
 
 void Dice::Enemy_stat_roll(Enemy enemy, int stat, int num_of_dice, int sides)
