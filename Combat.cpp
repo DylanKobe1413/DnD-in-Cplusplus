@@ -109,13 +109,19 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 		{
 			if (compare == false || E_turn == true)
 			{
-				if (Distance > E_weapon_range)
+				if (Distance >= E_weapon_range)
 				{
 					dice.roll(1, 1);
 						if (dice_roll == 1)
 						{
 							Distance = Distance - E_speed;
 							Check_Distance();
+							cout << "The Wolf rushes towards you...\n";
+							cout << "Distance between you and the wolf is now " << Distance << "\n\n";
+						}
+						else if (Distance < E_weapon_range)
+						{
+							cout << "The Wolf cannot attack you so it moves closer.\n";
 							cout << "The Wolf rushes towards you...\n";
 							cout << "Distance between you and the wolf is now " << Distance << "\n\n";
 						}

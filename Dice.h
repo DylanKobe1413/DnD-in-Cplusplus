@@ -27,7 +27,7 @@ public:
 
 
 	void roll_Dice(int num_of_dice, int sides);
-
+	
 
 	void stat_roll(Stats character, int stat, int num_of_dice, int sides);
 
