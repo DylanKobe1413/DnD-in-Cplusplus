@@ -1,5 +1,16 @@
 #include "Dice.h"
 
+void Dice::set_dice_roll(int outcome)
+{
+	dice_roll = outcome;
+}
+
+int Dice::get_dice_roll()
+{
+	return dice_roll;
+}
+
+
 void Dice::roll(int num_of_dice, int sides)
 {
 	for (int i = 1; i <= num_of_dice; i++)

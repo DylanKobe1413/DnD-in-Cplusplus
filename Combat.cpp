@@ -44,7 +44,7 @@ void Combat::check_player_distance()
 	 if (weapon_function == "Ranged" && get_distance() <= 5)
 	{
 		// make sure this works in combat AND stat rolls
-		disadvantage = true;
+		 disadvantage = true;
 	}
 }
 
@@ -119,7 +119,7 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 				if (get_distance() > E_weapon_range)
 				{
 					dice.roll(1, 1);
-					if (dice_roll == 1)
+					if (dice.get_dice_roll() == 1)
 					{
 						cout << "The Wolf rushes towards you...\n";
 						set_distance(get_distance() - E_speed);
@@ -129,7 +129,7 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 						{
 							dice.roll(1, 1);
 							// attempts an attack with bite
-							if (dice_roll == 1)
+							if (dice.get_dice_roll() == 1)
 							{
 							dice.Enemy_Attack_roll(enemy, E_weapon);
 							}
@@ -142,7 +142,7 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice)
 				else if (get_distance() <= E_weapon_range)
 				{
 					dice.roll(1, 1);
-					if (dice_roll == 1)
+					if (dice.get_dice_roll() == 1)
 					{
 						cout << "The Wolf is in range to attack you.\n";
 						dice.Enemy_Attack_roll(enemy, E_weapon);

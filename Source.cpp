@@ -38,15 +38,6 @@ int prof_bonus = 0;
 int AC;
 int P_initiative = 0;
 
-//Dice variables for external usage.
-int dice_roll;
-int player_dice_roll;
-int enemy_dice_roll;
-bool crit = false;
-bool crit_fail = false;
-bool advantage = false;
-bool disadvantage = false;
-
 // Enemies variables for external usage.
 
 //wolf stats.

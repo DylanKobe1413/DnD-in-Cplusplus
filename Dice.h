@@ -6,22 +6,24 @@
 #include <string>
 using namespace std;
 
-extern int dice_roll;
-extern int player_dice_roll;
-extern int enemy_dice_roll;
-extern bool crit;
-extern bool crit_fail;
-extern bool advantage;
-extern bool disadvantage;
-
 class Dice
 {
 private:
-	// fix stat_roll to print when specified!
+	int dice_roll;
+	int player_dice_roll;
+	int enemy_dice_roll;
 	int Stat;
 	bool print = false;
-
+	bool crit;
+	bool crit_fail;
 public:
+	void set_dice_roll(int outcome);
+
+	int get_dice_roll();
+
+	void set_advantage(bool T_F);
+
+	void set_disadvantage(bool T_F);
 
 	void roll(int num_of_dice, int sides);
 

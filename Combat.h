@@ -11,13 +11,16 @@ class Combat
 private:
 	int input;
 	int distance;
-	bool combat;
-	bool compare;
-	bool P_turn;
 	int P_attack1;
 	int P_attack2;
 	int P_move1;
 	int P_move2;
+	bool combat;
+	bool compare;
+	bool advantage;
+	bool disadvantage;
+	bool P_turn;
+	
 
 	bool E_turn;
 	string E_attack1;
