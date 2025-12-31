@@ -8,36 +8,7 @@
 #include <string>
 using namespace std;
 
-//stats variables for external usage.
-int Str = 10, Dex = 10, Con = 10, Int = 10, Wis = 10, Cha = 10;
-int stat_bonus = 0;
-int ammo = 0;
-string Class;
-string FightingStyle;
-string weapon_dmg;
-string weapon_type;
-string weapon_catagory;
-string weapon_stat_bonus;
-string weapon1, weapon2, weapon3;
-int weapon_range;
-string weapon_function;
-string armor1, armor2;
-string armor_type;
-string pack;
-string item1, item2, item3, item4;
-string shield;
-int HP;
-string hitdice;
-int speed = 30;
-int xp = 0;
-int level = 1;
-int Str_Save;
-bool Proficiency_Simple_Weapons = false;
-bool Proficiency_Martial_Weapons = false;
-int prof_bonus = 0;
-int AC;
-int P_initiative = 0;
-
+// remove these and merge into stats all under one class
 // Enemies variables for external usage.
 
 //wolf stats.
@@ -65,26 +36,20 @@ string E_weapon_function;
 int E_weapon_range;
 string E_name;
 
-// Combat variables for external usage.
-
-
 int main()
-{
+{   //Declerations
 	srand((unsigned)time(NULL));
 	Dice Dice;
 	Stats Player_Stats;
 	Enemy Wolf;
 	Combat PlayervsWolf;
-
+	//Stat SETUP
 	Player_Stats.set_Stats();
 	Player_Stats.set_Class();
 	Wolf.set_Stats("Wolf");
-
-	
+	//Combat
 	PlayervsWolf.set_distance(60);
-	Dice.set_Player_Initiative(Player_Stats, Dex);
-	Dice.set_Enemy_Initiative(Wolf, Wolf_Dex, wolf);
-	PlayervsWolf.Initiative_compare(P_initiative, E_initiative);
+	PlayervsWolf.Initiative_compare(Dice.set_Player_Initiative(Player_Stats), Dice.set_Enemy_Initiative(Wolf, Wolf_Dex, wolf));
 	PlayervsWolf.Set_Player_Combat_Options(1, 1, 1, 1);
 	PlayervsWolf.StartCombat(Player_Stats, Wolf, Dice);
 	

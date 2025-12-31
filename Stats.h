@@ -4,35 +4,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-//variables for Stats class
-extern int Str, Dex, Con, Int, Wis, Cha;
-extern int stat_bonus;
-extern string Class;
-extern string FightingStyle;
-extern string weapon_dmg;
-extern string weapon_type;
-extern string weapon_catagory;
-extern string weapon_stat_bonus;
-extern string weapon1, weapon2, weapon3;
-extern int weapon_range;
-extern string weapon_function;
-extern string armor1, armor2;
-extern string armor_type;
-extern string pack;
-extern string item1, item2, item3, item4;
-extern string shield;
-extern int HP;
-extern string hitdice;
-extern int speed;
-extern int xp;
-extern int level;
-extern int Str_Save;
-extern bool Proficiency_Simple_Weapons;
-extern bool Proficiency_Martial_Weapons;
-extern int prof_bonus;
-extern int AC;
-extern int ammo;
-extern int P_initiative;
 
 class Stats
 {
@@ -40,17 +11,54 @@ class Stats
 private:
 	int total = 27;
 	int input = 0;
-   
-	
+	int Str = 10, Dex = 10, Con = 10, Int = 10, Wis = 10, Cha = 10;
+	int stat_bonus;
+	int saving_throw;
+	string Class;
+	string FightingStyle;
+	string hitdice;
+
 public:
+	int P_initiative = 0;
+	string weapon_dmg;
+	string weapon_type;
+	string weapon_catagory;
+	// to get dex strength or could be finesse
+	string weapon_stat_bonus;
+	string weapon1, weapon2, weapon3;
+	int weapon_range;
+	string weapon_function;
+	string armor1;
+	string armor_type;
+	//backpack?
+	string item1, item2, item3, item4;
+	string shield;
+	bool Proficiency_Simple_Weapons = false;
+	bool Proficiency_Martial_Weapons = false;
+	int prof_bonus = 0;
+	int HP = 1;
+	int speed = 20;
+	int xp = 0;
+	int level = 1;
+	int AC = 10;
+	int ammo = 0;
+	//setters
+	void set_stat_bonus(int statbonus);
+
+	//getters
+	int get_Srength();
+	int get_Dexterity();
+	int get_Constitution();
+	int get_Intelligence();
+	int get_Wisdom();
+	int get_Charisma();
 
 	void set_Stats();
-	
+
 	void set_Class();
 
 	void Starting_Fighter();
 
-	int get_Stat(int stat);
 
 	int get_stat_bonus(int stat);
 

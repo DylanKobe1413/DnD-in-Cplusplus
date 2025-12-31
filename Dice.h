@@ -20,7 +20,7 @@ public:
 	void set_dice_roll(int outcome);
 
 	int get_dice_roll();
-
+	// add these two functions below!
 	void set_advantage(bool T_F);
 
 	void set_disadvantage(bool T_F);
@@ -38,24 +38,24 @@ public:
 
 	void Player_Damage_roll(string weapon, Enemy enemy, Stats Player);
 
-	void Enemy_Attack_roll(Enemy enemy, string Enemy_weapon);
+	void Enemy_Attack_roll(Enemy enemy, string Enemy_weapon, Stats Player);
 
-	void Enemy_Damage_roll(string E_weapon);
+	void Enemy_Damage_roll(string E_weapon, Stats Player);
 
-	void get_Weapon_Properties(string weapon_name);
+	void get_Weapon_Properties(string weapon_name, Stats Player);
 
 	void get_Enemy_Weapon_Properties(string Enemey_weapon_name);
 		
 	// for the player character
-	void get_Weapon_Stat_Bonus(string weapon);
+	void get_Weapon_Stat_Bonus(string weapon, Stats player_character);
 
-	void get_Weapon_Proficiency_And_Print_Dice(string weapon);
+	void get_Weapon_Proficiency_And_Print_Dice(string weapon, Stats Player);
 
 	void get_Armor_Properties(string armor, Stats player);
 
-	void set_Player_Initiative(Stats player, int dext);
+	int set_Player_Initiative(Stats player);
 
-	void set_Enemy_Initiative(Enemy enemy, int Dex, string enemy_name);
+	int set_Enemy_Initiative(Enemy enemy, int Dex, string enemy_name);
 
 
 

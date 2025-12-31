@@ -1,5 +1,41 @@
 #include "Stats.h"
 // add a weight system?
+// setters
+void Stats::set_stat_bonus(int statbonus)
+{
+	stat_bonus = statbonus;
+}
+//getters
+int Stats::get_Srength()
+{
+	return Str;
+}
+
+int Stats::get_Dexterity()
+{
+	return Dex;
+}
+
+int Stats::get_Constitution()
+{
+	return Con;
+}
+
+int Stats::get_Intelligence()
+{
+	return Int;
+}
+
+int Stats::get_Wisdom()
+{
+	return Wis;
+}
+
+int Stats::get_Charisma()
+{
+	return Cha;
+}
+
 // set up the stats!
 void Stats::set_Stats()
 
@@ -141,10 +177,6 @@ void Stats:: Starting_Fighter()
 	case 5: FightingStyle = "Two Weapon Fighting";
 		cout << FightingStyle << " is your fighting style!\n";
 	}
-}
-int Stats::get_Stat(int stat)
-{
-	return stat;
 }
 
 int Stats::get_stat_bonus(int stat)
