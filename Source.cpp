@@ -43,10 +43,12 @@ int main()
 	Stats Player_Stats;
 	Enemy Wolf;
 	Combat PlayervsWolf;
+
 	//Stat SETUP
 	Player_Stats.set_Stats();
 	Player_Stats.set_Class();
 	Wolf.set_Stats("Wolf");
+
 	//Combat
 	PlayervsWolf.set_distance(60);
 	PlayervsWolf.Initiative_compare(Dice.set_Player_Initiative(Player_Stats), Dice.set_Enemy_Initiative(Wolf, Wolf_Dex, wolf));

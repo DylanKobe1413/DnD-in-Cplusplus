@@ -72,7 +72,7 @@ public:
 
 	void print_out_stat(int stat);
 
-	
+	// Enemy Stat setup
 };
 
 /*  Wolf_Str = 13, Wolf_Dex = 15, Wolf_Con = 15, Wolf_Int = 2, Wolf_Wis = 12, Wolf_Cha = 6;
