@@ -248,6 +248,29 @@ void Stats:: print_out_stat(int stat)
 	cout << stat << "\n";
 }
 
+
+//constructor for enemy
+//string wolf = "Wolf";
+	//int Wolf_Str = 12, Wolf_Dex = 15, Wolf_Con = 12, Wolf_Int = 3, Wolf_Wis = 12, Wolf_Cha = 6;
+	//int Wolf_AC = 14;
+	//int Wolf_speed = 40;
+	//int Wolf_HP = 13;
+	//int Wolf_initiative = 0;
+Stats::Stats()
+{
+
+}
+Stats::Stats (string enemy_name, Stats enemy)
+{
+	if (enemy_name == "Wolf")
+	{
+		enemy.HP = 13;
+		enemy.AC = 14;
+		enemy.Str = 12, enemy.Dex = 15, enemy.Con = 12, enemy.Int = 3, enemy.Wis = 12, enemy.Cha = 6;
+		enemy.speed = 40;
+	}
+}
+
 void Enemy::set_Stats(string Enemy_Name)
 {
 	if (Enemy_Name == "Wolf")

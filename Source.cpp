@@ -43,7 +43,7 @@ int main()
 	Stats Player_Stats;
 	Enemy Wolf;
 	Combat PlayervsWolf;
-
+	Stats("Wolf", Wolf);
 	//Stat SETUP
 	Player_Stats.set_Stats();
 	Player_Stats.set_Class();
