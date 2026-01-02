@@ -109,6 +109,8 @@ void Stats::set_Stats()
 	{
 		speed + 10;
 	}
+
+	name = "Player";
 }
 // set up the class!
 void Stats::set_Class()
@@ -256,58 +258,24 @@ void Stats:: print_out_stat(int stat)
 	//int Wolf_speed = 40;
 	//int Wolf_HP = 13;
 	//int Wolf_initiative = 0;
+
+//default constructor (i believe it's requiring one but i'll see if i can remove this without getting an error for some reason.
 Stats::Stats()
 {
-
+	cout << "Error";
 }
 Stats::Stats (string enemy_name, Stats enemy)
 {
 	if (enemy_name == "Wolf")
 	{
+		enemy.name = "Wolf";
 		enemy.HP = 13;
 		enemy.AC = 14;
 		enemy.Str = 12, enemy.Dex = 15, enemy.Con = 12, enemy.Int = 3, enemy.Wis = 12, enemy.Cha = 6;
 		enemy.speed = 40;
 		enemy.weapon1 = "Bite";
 		enemy.weapon_range = 5;
+		enemy.Proficiency_Simple_Weapons = true;
+		enemy.prof_bonus = 2;
 	}
-}
-
-void Enemy::set_Stats(string Enemy_Name)
-{
-	if (Enemy_Name == "Wolf")
-	{
-		E_initiative = Wolf_initiative;
-		E_HP = Wolf_HP;
-		E_speed = Wolf_speed;
-		E_AC = Wolf_AC;
-		E_Str = Wolf_Str, E_Dex = Wolf_Dex, E_Con = Wolf_Con, E_Int = Wolf_Int, E_Wis = Wolf_Wis, E_Cha = Wolf_Cha;
-		E_weapon = Wolf_weapon;
-		E_name = Enemy_Name;
-		E_weapon_range = 5;
-	}
-}
-
-int Enemy::get_Stat(int stat)
-{
-	return stat;
-}
-
-int Enemy::get_stat_bonus(int stat)
-{
-	if (stat == 12 || stat == 13)
-		E_stat_bonus = 1;
-	else if (stat == 14 || stat == 15)
-	{
-		E_stat_bonus = 2;
-	}
-	else if (stat == 8 || stat == 9)
-	{
-		E_stat_bonus = 1;
-	}
-	else if (stat == 16 || stat == 17)
-	{
-		E_stat_bonus = 3;
-	}
-	return E_stat_bonus;
 }

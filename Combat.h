@@ -11,17 +11,17 @@ class Combat
 private:
 	int input;
 	int distance;
-	int P_attack1;
-	int P_attack2;
-	int P_move1;
-	int P_move2;
 	bool combat;
 	bool compare;
 	bool advantage;
 	bool disadvantage;
+	//player
+	int P_attack1;
+	int P_attack2;
+	int P_move1;
+	int P_move2;
 	bool P_turn;
-	
-
+	//enemy
 	bool E_turn;
 	string E_attack1;
 	
@@ -30,11 +30,11 @@ public :
 	int  get_distance();
 	void Initiative_compare(int player, int enemy);
 	void check_distance(Stats Character);
-	void StartCombat(Stats Player, Enemy enemy, Dice dice);
-	void setEnemyBehavior(Enemy enemy, Dice dice, Stats Player);
+	void StartCombat(Stats Player, Stats enemy, Dice dice);
+	void setEnemyBehavior(Stats Enemy, Dice dice, Stats Player);
 	void Set_Player_Combat_Options(int attack1, int attack2, int move1, int move2);
 	void PrintPlayerCombatOptions(Stats Player);
-	void Player_Select(Stats Player, Enemy enemy, Dice dice);
+	void Player_Select(Stats Player, Stats Enemy, Dice dice);
 	void Enemy_turn();
 	void Player_turn();
 	void Check_Distance();

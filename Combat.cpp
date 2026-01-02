@@ -50,7 +50,7 @@ void Combat::check_distance(Stats Character)
 
 
 
-void Combat::StartCombat(Stats player_character, Enemy enemy, Dice dice)
+void Combat::StartCombat(Stats player_character, Stats Enemy, Dice dice)
 {
 	combat = true;
 	
@@ -58,17 +58,17 @@ void Combat::StartCombat(Stats player_character, Enemy enemy, Dice dice)
 	{
 		cout << "You go first! \n\n";
 
-		while (player_character.HP > 0 && E_HP > 0)
+		while (player_character.HP > 0 && Enemy.HP > 0)
 		{
 			check_distance(player_character);
-			Player_Select(player_character, enemy, dice);
-			if (E_HP <= 0)
+			Player_Select(player_character, Enemy, dice);
+			if (Enemy.HP <= 0)
 			{
-				cout << "You deafeat the " << E_name << "\n\n";
+				cout << "You deafeat the " << Enemy.name << "\n\n";
 				break;
 			}
 			Enemy_turn();
-			setEnemyBehavior(enemy, dice, player_character);
+			setEnemyBehavior(Enemy, dice, player_character);
 			if (player_character.HP <= 0)
 			{
 				cout << "You Die... :( \n\n";
@@ -82,9 +82,9 @@ void Combat::StartCombat(Stats player_character, Enemy enemy, Dice dice)
 	{
 		cout << "You go second...\n\n";
 
-		while (player_character.HP > 0 && E_HP > 0)
+		while (player_character.HP > 0 && Enemy.HP > 0)
 		{
-			setEnemyBehavior(enemy, dice, player_character);
+			setEnemyBehavior(Enemy, dice, player_character);
 			if (player_character.HP <= 0)
 			{
 				cout << "You Die... :( \n\n";
@@ -93,11 +93,11 @@ void Combat::StartCombat(Stats player_character, Enemy enemy, Dice dice)
 
 			Player_turn();
 			check_distance(player_character);
-			Player_Select(player_character, enemy, dice);
+			Player_Select(player_character, Enemy, dice);
 
-			if (E_HP <= 0)
+			if (Enemy.HP <= 0)
 			{
-				cout << "You deafeat the " << E_name << "\n\n";
+				cout << "You deafeat the " << Enemy.name << "\n\n";
 				break;
 			}
 		}
@@ -106,32 +106,31 @@ void Combat::StartCombat(Stats player_character, Enemy enemy, Dice dice)
 
 }
 
-void Combat::setEnemyBehavior(Enemy enemy, Dice dice, Stats player_character)
+void Combat::setEnemyBehavior(Stats Enemy, Dice dice, Stats Player)
 {
-	if (E_name == "Wolf")
+	if (Enemy.name == "Wolf")
 	{
-		//bite
-		E_attack1 = E_weapon;
-		if (player_character.HP > 0 && E_HP > 0)
+		
+		if (Player.HP > 0 && Enemy.HP > 0)
 		{
 			if (compare == false || E_turn == true)
 			{
-				if (get_distance() > E_weapon_range)
+				if (get_distance() > Enemy.weapon_range)
 				{
 					dice.roll(1, 1);
 					if (dice.get_dice_roll() == 1)
 					{
 						cout << "The Wolf rushes towards you...\n";
-						set_distance(get_distance() - E_speed);
+						set_distance(get_distance() - Enemy.speed);
 						Check_Distance();
 						cout << "Distance between you and the wolf is now " << get_distance() << "\n\n";
-						if (get_distance() <= E_weapon_range)
+						if (get_distance() <= Enemy.weapon_range)
 						{
 							dice.roll(1, 1);
 							// attempts an attack with bite
 							if (dice.get_dice_roll() == 1)
 							{
-							dice.Enemy_Attack_roll(enemy, E_weapon, player_character);
+							dice.Attack_roll(Enemy, Player, Enemy.weapon1);
 							}
 
 								
@@ -139,13 +138,13 @@ void Combat::setEnemyBehavior(Enemy enemy, Dice dice, Stats player_character)
 					}
 					
 				}
-				else if (get_distance() <= E_weapon_range)
+				else if (get_distance() <= Enemy.weapon_range)
 				{
 					dice.roll(1, 1);
 					if (dice.get_dice_roll() == 1)
 					{
 						cout << "The Wolf is in range to attack you.\n";
-						dice.Enemy_Attack_roll(enemy, E_weapon, player_character);
+						dice.Attack_roll(Enemy, Player, Enemy.weapon1);
 					}
 				}
 			}
@@ -252,29 +251,29 @@ void Combat::PrintPlayerCombatOptions(Stats player)
 	}
 }
 
-void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
+void Combat::Player_Select(Stats Player, Stats Enemy, Dice dice)
 {
-	PrintPlayerCombatOptions(player);
+	PrintPlayerCombatOptions(Player);
 	cin >> input;
 	cout << "\n";
 	switch (input)
 	{
 	case 1:
-		dice.Attack_roll(player, enemy, player.weapon1);
+		dice.Attack_roll(Player, Enemy, Player.weapon1);
 		break;
 
 	case 2:
-		dice.Attack_roll(player, enemy, player.weapon2);
+		dice.Attack_roll(Player, Enemy, Player.weapon2);
 		break;
 
 	case 3:
 		Player_turn();
-		set_distance(get_distance() - player.speed);
+		set_distance(get_distance() - Player.speed);
 		Check_Distance();
-		cout << "You move " << player.speed << " feet closer to the " << E_name << "\n";
-		cout << "You are now " << get_distance() << " feet away from the " << E_name << "\n\n";
+		cout << "You move " << Player.speed << " feet closer to the " << Enemy.name << "\n";
+		cout << "You are now " << get_distance() << " feet away from the " << Enemy.name << "\n\n";
 		P_move1 = 0, P_move2 = 0;
-		PrintPlayerCombatOptions(player);
+		PrintPlayerCombatOptions(Player);
 
 		cin >> input;
 		cout << "\n";
@@ -282,11 +281,11 @@ void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
 		switch (input)
 		{
 		case 1:
-			dice.Attack_roll(player, enemy, player.weapon1);
+			dice.Attack_roll(Player, Enemy, Player.weapon1);
 			break;
 
 		case 2:
-			dice.Attack_roll(player, enemy, player.weapon2);
+			dice.Attack_roll(Player, Enemy, Player.weapon2);
 			break;
 		}
 		P_move1 = 1, P_move2 = 1;
@@ -294,23 +293,23 @@ void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
 
 	case 4:
 		Player_turn();
-		set_distance(get_distance() + player.speed);
+		set_distance(get_distance() + Player.speed);
 		Check_Distance();
-		cout << "You move " << player.speed << " feet away from the " << E_name << "\n";
-		cout << "You are now " << get_distance() << " feet away from the " << E_name << "\n\n";
+		cout << "You move " << Player.speed << " feet away from the " << Enemy.name << "\n";
+		cout << "You are now " << get_distance() << " feet away from the " << Enemy.name << "\n\n";
 		P_move1 = 0, P_move2 = 0;
-		PrintPlayerCombatOptions(player);
+		PrintPlayerCombatOptions(Player);
 		cin >> input;
 		cout << "\n";
 
 		switch (input)
 		{
 		case 1:
-			dice.Attack_roll(player, enemy, player.weapon1);
+			dice.Attack_roll(Player, Enemy, Player.weapon1);
 			break;
 
 		case 2:
-			dice.Attack_roll(player, enemy, player.weapon2);
+			dice.Attack_roll(Player, Enemy, Player.weapon2);
 		}
 		P_move1 = 1, P_move2 = 1;
 		break;
