@@ -51,7 +51,7 @@ int main()
 
 	//Combat
 	PlayervsWolf.set_distance(60);
-	PlayervsWolf.Initiative_compare(Dice.set_Player_Initiative(Player_Stats), Dice.set_Enemy_Initiative(Wolf, Wolf_Dex, wolf));
+	PlayervsWolf.Initiative_compare(Dice.set_Initiative(Player_Stats), Dice.set_Enemy_Initiative(Wolf, Wolf_Dex, wolf));
 	PlayervsWolf.Set_Player_Combat_Options(1, 1, 1, 1);
 	PlayervsWolf.StartCombat(Player_Stats, Wolf, Dice);
 	

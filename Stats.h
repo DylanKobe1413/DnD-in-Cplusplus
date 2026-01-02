@@ -42,6 +42,7 @@ public:
 	int level = 1;
 	int AC = 10;
 	int ammo = 0;
+	string name = "";
 	//setters
 	void set_stat_bonus(int statbonus);
 

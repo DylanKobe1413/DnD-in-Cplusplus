@@ -268,6 +268,8 @@ Stats::Stats (string enemy_name, Stats enemy)
 		enemy.AC = 14;
 		enemy.Str = 12, enemy.Dex = 15, enemy.Con = 12, enemy.Int = 3, enemy.Wis = 12, enemy.Cha = 6;
 		enemy.speed = 40;
+		enemy.weapon1 = "Bite";
+		enemy.weapon_range = 5;
 	}
 }
 

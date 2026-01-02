@@ -35,13 +35,13 @@ void Combat::Initiative_compare(int player, int enemy)
 
 }
 
-void Combat::check_player_distance(Stats character)
+void Combat::check_distance(Stats Character)
 {
-	if (character.weapon_function == "Ranged" && get_distance() > character.weapon_range)
+	if (Character.weapon_function == "Ranged" && get_distance() > Character.weapon_range)
 	{
 		P_attack1 = 0;
 	}
-	 if (character.weapon_function == "Ranged" && get_distance() <= 5)
+	 if (Character.weapon_function == "Ranged" && get_distance() <= 5)
 	{
 		// make sure this works in combat AND stat rolls
 		 disadvantage = true;
@@ -60,7 +60,7 @@ void Combat::StartCombat(Stats player_character, Enemy enemy, Dice dice)
 
 		while (player_character.HP > 0 && E_HP > 0)
 		{
-			check_player_distance(player_character);
+			check_distance(player_character);
 			Player_Select(player_character, enemy, dice);
 			if (E_HP <= 0)
 			{
@@ -92,7 +92,7 @@ void Combat::StartCombat(Stats player_character, Enemy enemy, Dice dice)
 			}
 
 			Player_turn();
-			check_player_distance(player_character);
+			check_distance(player_character);
 			Player_Select(player_character, enemy, dice);
 
 			if (E_HP <= 0)
@@ -260,11 +260,11 @@ void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
 	switch (input)
 	{
 	case 1:
-		dice.Player_Attack_roll(player, enemy, player.weapon1);
+		dice.Attack_roll(player, enemy, player.weapon1);
 		break;
 
 	case 2:
-		dice.Player_Attack_roll(player, enemy, player.weapon2);
+		dice.Attack_roll(player, enemy, player.weapon2);
 		break;
 
 	case 3:
@@ -282,11 +282,11 @@ void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
 		switch (input)
 		{
 		case 1:
-			dice.Player_Attack_roll(player, enemy, player.weapon1);
+			dice.Attack_roll(player, enemy, player.weapon1);
 			break;
 
 		case 2:
-			dice.Player_Attack_roll(player, enemy, player.weapon2);
+			dice.Attack_roll(player, enemy, player.weapon2);
 			break;
 		}
 		P_move1 = 1, P_move2 = 1;
@@ -306,11 +306,11 @@ void Combat::Player_Select(Stats player, Enemy enemy, Dice dice)
 		switch (input)
 		{
 		case 1:
-			dice.Player_Attack_roll(player, enemy, player.weapon1);
+			dice.Attack_roll(player, enemy, player.weapon1);
 			break;
 
 		case 2:
-			dice.Player_Attack_roll(player, enemy, player.weapon2);
+			dice.Attack_roll(player, enemy, player.weapon2);
 		}
 		P_move1 = 1, P_move2 = 1;
 		break;
