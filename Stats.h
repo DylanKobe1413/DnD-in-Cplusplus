@@ -76,7 +76,7 @@ public:
 };
 
 /*  Wolf_Str = 13, Wolf_Dex = 15, Wolf_Con = 15, Wolf_Int = 2, Wolf_Wis = 12, Wolf_Cha = 6;
-	 Wolf_stat_bonus = 0;
+	 W`olf_stat_bonus = 0;
 	 wolf_Ac = 14;
 	 wolf_speed = 50;
 	 wolf_HP = 13;
