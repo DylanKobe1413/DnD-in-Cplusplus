@@ -75,7 +75,7 @@ public:
 
 	// Enemy Stat setup via constructor
 	Stats();
-	Stats(string enemy_name, Stats enemy);
+	Stats(string Enemy_name);
 };
 
 /*  Wolf_Str = 13, Wolf_Dex = 15, Wolf_Con = 15, Wolf_Int = 2, Wolf_Wis = 12, Wolf_Cha = 6;

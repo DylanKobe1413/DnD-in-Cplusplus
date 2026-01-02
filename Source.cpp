@@ -12,20 +12,21 @@ int main()
 {   //Declerations
 	srand((unsigned)time(NULL));
 	Dice Dice;
-	Stats Player_Stats;
-	Enemy Wolf;
+	Stats Player;
+	Stats Wolf("Wolf");
 	Combat PlayervsWolf;
-	Stats("Wolf", Wolf);
+
 	//Stat SETUP
-	Player_Stats.set_Stats();
-	Player_Stats.set_Class();
-	Wolf.set_Stats("Wolf");
+	Player.set_Stats();
+	Player.set_Class();
+	
 
 	//Combat
 	PlayervsWolf.set_distance(60);
-	PlayervsWolf.Initiative_compare(Dice.set_Initiative(Player_Stats), Dice.set_Enemy_Initiative(Wolf, Wolf_Dex, wolf));
+	// complier read from right to left for this instance so i put the player on the far right so they can have their initiative roll printed out first.
+	PlayervsWolf.Initiative_compare(Dice.set_Initiative(Wolf), Dice.set_Initiative(Player));
 	PlayervsWolf.Set_Player_Combat_Options(1, 1, 1, 1);
-	PlayervsWolf.StartCombat(Player_Stats, Wolf, Dice);
+	PlayervsWolf.StartCombat(Player, Wolf, Dice);
 	
 
 

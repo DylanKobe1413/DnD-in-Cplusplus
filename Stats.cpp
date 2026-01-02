@@ -193,6 +193,10 @@ int Stats::get_stat_bonus(int stat)
 	{
 		stat_bonus = 1;
 	}
+	else
+	{
+		stat_bonus = 0;
+	}
 	return stat_bonus;
 }
 
@@ -262,20 +266,21 @@ void Stats:: print_out_stat(int stat)
 //default constructor (i believe it's requiring one but i'll see if i can remove this without getting an error for some reason.
 Stats::Stats()
 {
-	cout << "Error";
+
 }
-Stats::Stats (string enemy_name, Stats enemy)
+
+Stats::Stats (string Enemy_name)
 {
-	if (enemy_name == "Wolf")
+	if (Enemy_name == "Wolf")
 	{
-		enemy.name = "Wolf";
-		enemy.HP = 13;
-		enemy.AC = 14;
-		enemy.Str = 12, enemy.Dex = 15, enemy.Con = 12, enemy.Int = 3, enemy.Wis = 12, enemy.Cha = 6;
-		enemy.speed = 40;
-		enemy.weapon1 = "Bite";
-		enemy.weapon_range = 5;
-		enemy.Proficiency_Simple_Weapons = true;
-		enemy.prof_bonus = 2;
+		name = "Wolf";
+		HP = 13;
+		AC = 14;
+		Str = 12, Dex = 15, Con = 12, Int = 3, Wis = 12, Cha = 6;
+		speed = 40;
+		weapon1 = "Bite";
+		weapon_range = 5;
+		Proficiency_Simple_Weapons = true;
+		prof_bonus = 2;
 	}
 }
