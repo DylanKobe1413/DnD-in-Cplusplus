@@ -29,12 +29,12 @@ public :
 	void set_distance(int Distance);
 	int  get_distance();
 	void Initiative_compare(int player, int enemy);
-	void check_distance(Stats Character);
-	void StartCombat(Stats Player, Stats enemy, Dice dice);
-	void setEnemyBehavior(Stats Enemy, Dice dice, Stats Player);
+	void check_distance(Stats &Character);
+	void StartCombat(Stats &Player, Stats &enemy, Dice dice);
+	void setEnemyBehavior(Stats &Enemy, Dice dice, Stats &Player);
 	void Set_Player_Combat_Options(int attack1, int attack2, int move1, int move2);
-	void PrintPlayerCombatOptions(Stats Player);
-	void Player_Select(Stats Player, Stats Enemy, Dice dice);
+	void PrintPlayerCombatOptions(Stats &Player);
+	void Player_Select(Stats &Player, Stats &Enemy, Dice dice);
 	void Enemy_turn();
 	void Player_turn();
 	void Check_Distance();

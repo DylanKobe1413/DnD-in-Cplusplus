@@ -29,7 +29,7 @@ void Dice::roll_Dice(int num_of_dice, int sides)
 }
 
 
-void Dice::Stat_roll(Stats Character, int stat, int num_of_dice, int sides)
+void Dice::Stat_roll(Stats &Character, int stat, int num_of_dice, int sides)
 {
 	Character.get_stat_bonus(stat);
 	roll(num_of_dice, sides);
@@ -47,7 +47,7 @@ void Dice::Stat_roll(Stats Character, int stat, int num_of_dice, int sides)
 	}
 }
 
-void Dice::Attack_roll(Stats Character, Stats Target, string weapon)
+void Dice::Attack_roll(Stats &Character, Stats &Target, string weapon)
 {
 	get_Weapon_Properties(weapon, Character);
 	get_Weapon_Stat_Bonus(weapon, Character);
@@ -90,7 +90,7 @@ void Dice::Attack_roll(Stats Character, Stats Target, string weapon)
 	}
 }
 
-void Dice::Damage_roll(string weapon, Stats Character, Stats Target)
+void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 {
 	get_Armor_Properties(Character.armor1, Character);
 	get_Weapon_Properties(weapon, Character);
@@ -128,7 +128,7 @@ void Dice::Damage_roll(string weapon, Stats Character, Stats Target)
 
 }
 // Move function to Stats.   Make function for dice to retrieve info?
-void Dice::get_Weapon_Properties(string weapon_name,Stats Character)
+void Dice::get_Weapon_Properties(string weapon_name,Stats &Character)
 {
 	if (weapon_name == "Longbow")
 	{
@@ -185,7 +185,7 @@ void Dice::get_Weapon_Properties(string weapon_name,Stats Character)
 
 
 // for the player character
-void Dice::get_Weapon_Stat_Bonus(string weapon, Stats Character)
+void Dice::get_Weapon_Stat_Bonus(string weapon, Stats &Character)
 {
 	if (Character.weapon_stat_bonus == "Strength")
 	{
@@ -214,7 +214,7 @@ void Dice::get_Weapon_Stat_Bonus(string weapon, Stats Character)
 	}
 }
 
-void Dice::get_Armor_Properties(string armor, Stats Character)
+void Dice::get_Armor_Properties(string armor, Stats &Character)
 {
 	if (armor == "Leather Armor")
 	{
@@ -227,7 +227,7 @@ void Dice::get_Armor_Properties(string armor, Stats Character)
 	}
 }
 
-void Dice::get_Weapon_Proficiency_And_Print_Dice(string weapon, Stats Character)
+void Dice::get_Weapon_Proficiency_And_Print_Dice(string weapon, Stats &Character)
 {
 	if (Character.weapon_catagory == "Simple")
 	{
@@ -258,7 +258,7 @@ void Dice::get_Weapon_Proficiency_And_Print_Dice(string weapon, Stats Character)
 		}
 }
 
-int Dice::set_Initiative(Stats Character)
+int Dice::set_Initiative(Stats &Character)
 {
 	Character.get_stat_bonus(Character.get_Dexterity());
 	roll(1, 20);

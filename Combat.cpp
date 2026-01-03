@@ -35,7 +35,7 @@ void Combat::Initiative_compare(int player, int enemy)
 
 }
 
-void Combat::check_distance(Stats Character)
+void Combat::check_distance(Stats &Character)
 {
 	if (Character.weapon_function == "Ranged" && get_distance() > Character.weapon_range)
 	{
@@ -50,7 +50,7 @@ void Combat::check_distance(Stats Character)
 
 
 
-void Combat::StartCombat(Stats player_character, Stats Enemy, Dice dice)
+void Combat::StartCombat(Stats &player_character, Stats &Enemy, Dice dice)
 {
 	combat = true;
 	
@@ -106,7 +106,7 @@ void Combat::StartCombat(Stats player_character, Stats Enemy, Dice dice)
 
 }
 
-void Combat::setEnemyBehavior(Stats Enemy, Dice dice, Stats Player)
+void Combat::setEnemyBehavior(Stats &Enemy, Dice dice, Stats &Player)
 {
 	if (Enemy.name == "Wolf")
 	{
@@ -163,7 +163,7 @@ void Combat::Set_Player_Combat_Options(int attack1, int attack2, int move1, int 
 	P_move2 = move2;
 }
 
-void Combat::PrintPlayerCombatOptions(Stats player)
+void Combat::PrintPlayerCombatOptions(Stats &player)
 {	// 1111
 	if (P_attack1 == 1 && P_attack2 == 1 && P_move1 == 1 && P_move2 == 1)
 	{
@@ -254,7 +254,7 @@ void Combat::PrintPlayerCombatOptions(Stats player)
 	}
 }
 
-void Combat::Player_Select(Stats Player, Stats Enemy, Dice dice)
+void Combat::Player_Select(Stats &Player, Stats &Enemy, Dice dice)
 {
 	PrintPlayerCombatOptions(Player);
 	cin >> input;
