@@ -103,11 +103,11 @@ void Stats::set_Stats()
 	AC = 10 + get_stat_bonus(Dex);
 	if (stat_bonus == 1)
 	{
-		speed + 5;
+		speed = speed + 5;
 	}
 	else if (stat_bonus == 2)
 	{
-		speed + 10;
+		speed = speed + 10;
 	}
 
 	name = "Player";

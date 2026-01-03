@@ -132,7 +132,10 @@ void Combat::setEnemyBehavior(Stats Enemy, Dice dice, Stats Player)
 							{
 							dice.Attack_roll(Enemy, Player, Enemy.weapon1);
 							}
-
+							else 
+							{
+								cout << Enemy.name << " Cannot reach you so their turn ends.\n";
+							}
 								
 						}
 					}
