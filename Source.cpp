@@ -1,6 +1,5 @@
 #include "Dice.h"
 #include "Stats.h"
-#include "Enemies.h"
 #include "Combat.h"
 #include <iostream>
 #include <cstdlib>

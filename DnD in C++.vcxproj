@@ -129,11 +129,9 @@
   <ItemGroup>
     <ClInclude Include="Combat.h" />
     <ClInclude Include="Dice.h" />
-    <ClInclude Include="Enemies.h" />
     <ClInclude Include="Stats.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Enemies.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Combat.cpp" />
     <ClCompile Include="Dice.cpp" />
