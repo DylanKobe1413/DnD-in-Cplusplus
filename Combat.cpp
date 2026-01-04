@@ -9,8 +9,8 @@ int Combat::get_distance()
 {
 	return distance;
 }
-
-void Combat::Initiative_compare(int player, int enemy)
+// compiler is reading this from right to left so i put player to the right in the parameter so it can be read and outputted first.
+void Combat::Initiative_compare(int enemy, int player)
 {
 	if (player > enemy)
 	{
@@ -330,6 +330,7 @@ void Combat::Enemy_turn()
 
 void Combat::Player_turn()
 {
+	P_turn = true;
 	if (P_turn == true)
 	{
 		E_turn = false;
