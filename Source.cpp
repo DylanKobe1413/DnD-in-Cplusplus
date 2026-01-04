@@ -2,6 +2,7 @@
 #include "Stats.h"
 #include "Combat.h"
 #include <iostream>
+//apprently srand is trash so include the random library at some point for better randomness. 
 #include <cstdlib>
 #include <ctime>
 #include <string>
@@ -20,7 +21,7 @@ int main()
 	Player.set_Class();
 	
 
-	//Combat
+	//Combat setup
 	PlayervsWolf.set_distance(60);
 	// complier read from right to left for this instance so i put the player on the far right so they can have their initiative roll printed out first.
 	PlayervsWolf.Initiative_compare(Dice.set_Initiative(Wolf), Dice.set_Initiative(Player));
