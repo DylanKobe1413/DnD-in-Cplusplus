@@ -84,7 +84,7 @@ void Dice::Attack_roll(Stats &Character, Stats &Target, string weapon)
 		}
 	}
 
-	else
+	else if ( dice_roll < Target.AC)
 	{
 		cout << Character.name << " missed " << Target.name << "\n\n";
 	}
@@ -98,6 +98,7 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 	Character.get_stat_bonus(Stat);
 	// make this a function and make it a parameter that gets the input of the dice roll via an array ? assign weapon_dmg like so. if weapon_name == longbow int dmg = [1,8] then call it in a function with weapon_dmg 
 	// then make it do a dice roll for damage Stat_roll(character,weapon_dmg[0],weapondmg[1]) YOU COULD ALSO CALL WEAPON_DMG WEAPON_DICE
+	// make sure you print the dice roll then print out the diceroll + statbonus then print out the sum
 	if (Character.weapon_dmg == "1d8")
 	{
 		if (crit == true)
@@ -111,12 +112,12 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 			Target.HP = Target.HP - dice_roll;
 		}
 		else {
-			cout << "Rolling your damage! \n\n";
+			cout << "Rolling "<< Character.name << "'s damage  to the " << Target.name << "!\n\n";
 			roll(1, 8);
 			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
 			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
 			cout << dice_roll << "\n";
-			cout << Character.name << "deals " << dice_roll << " points of damage to the " << Target.name << "\n\n";
+			cout << Character.name << " deals " << dice_roll << " points of damage to the " << Target.name << "\n\n";
 			Target.HP = Target.HP - dice_roll;
 		}
 		if (Target.HP <= 0)

@@ -137,7 +137,7 @@ void Combat::setEnemyBehavior(Stats &Enemy, Dice dice, Stats &Player)
 						}
 						else 
 						{
-							cout << Enemy.name << " Cannot reach you so their turn ends.\n";
+							cout << "The Wolf Cannot reach you so its turn ends.\n\n";
 						}
 					}
 					
@@ -147,7 +147,7 @@ void Combat::setEnemyBehavior(Stats &Enemy, Dice dice, Stats &Player)
 					dice.roll(1, 1);
 					if (dice.get_dice_roll() == 1)
 					{
-						cout << "The Wolf is in range to attack you.\n";
+						cout << "The Wolf is in range to attack you.\n\n";
 						dice.Attack_roll(Enemy, Player, Enemy.weapon1);
 					}
 				}
