@@ -96,6 +96,7 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 	get_Weapon_Properties(weapon, Character);
 	get_Weapon_Stat_Bonus(weapon, Character);
 	Character.get_stat_bonus(Stat);
+	// make this a function and make it a parameter that gets the input of the dice roll as a string  and perfromes the roll. See if its posible
 	if (Character.weapon_dmg == "1d8")
 	{
 		if (crit == true)
@@ -114,7 +115,7 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
 			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
 			cout << dice_roll << "\n";
-			cout << "You deal " << dice_roll << " points of damage to the " << Target.name << "\n\n";
+			cout << Character.name << "deals " << dice_roll << " points of damage to the " << Target.name << "\n\n";
 			Target.HP = Target.HP - dice_roll;
 		}
 		if (Target.HP <= 0)
@@ -125,6 +126,39 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 		else
 			cout << Target.name << "'s HP  = " << Target.HP << "\n\n";
 	}
+
+	else if (Character.weapon_dmg == "2d4")
+	{
+		if (crit == true)
+		{
+			cout << "Rolling " << Character.name << "'s Critical Damage!!!\n";
+			roll(4, 4);
+			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
+			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
+			cout << dice_roll << "\n";
+			cout << Character.name << " deals " << dice_roll << " points of damage to the " << Target.name << "\n\n";
+			Target.HP = Target.HP - dice_roll;
+		}
+		else {
+			cout << "Rolling your damage! \n\n";
+			roll(2, 4);
+			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
+			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
+			cout << dice_roll << "\n";
+			cout << Character.name << " deals " << dice_roll << " points of damage to the " << Target.name << "\n\n";
+			Target.HP = Target.HP - dice_roll;
+		}
+		if (Target.HP <= 0)
+		{
+			cout << Target.name << "'s HP  = 0 \n";
+		}
+
+		else
+		{
+			cout << Target.name << "'s HP  = " << Target.HP << "\n\n";
+		}
+	}
+	
 
 }
 // Move function to Stats.   Make function for dice to retrieve info?
