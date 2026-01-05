@@ -96,7 +96,8 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 	get_Weapon_Properties(weapon, Character);
 	get_Weapon_Stat_Bonus(weapon, Character);
 	Character.get_stat_bonus(Stat);
-	// make this a function and make it a parameter that gets the input of the dice roll as a string  and perfromes the roll. See if its posible
+	// make this a function and make it a parameter that gets the input of the dice roll via an array ? assign weapon_dmg like so. if weapon_name == longbow int dmg = [1,8] then call it in a function with weapon_dmg 
+	// then make it do a dice roll for damage Stat_roll(character,weapon_dmg[0],weapondmg[1]) YOU COULD ALSO CALL WEAPON_DMG WEAPON_DICE
 	if (Character.weapon_dmg == "1d8")
 	{
 		if (crit == true)
