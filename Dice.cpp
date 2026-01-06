@@ -10,29 +10,42 @@ int Dice::get_dice_roll()
 	return dice_roll;
 }
 
-// check for crit/fail for all dice rolls set crit/fail to true when condition is met
 void Dice::roll(int num_of_dice, int sides)
 {
 	for (int i = 1; i <= num_of_dice; i++)
 	{
 		dice_roll = (rand() % sides + 1);
 	}
+
 }
 
-void Dice::roll_Dice(int num_of_dice, int sides)
+void Dice::roll_And_Print_Dice(int num_of_dice, int sides)
 {
 	for (int i = 1; i <= num_of_dice; i++)
 	{
 		dice_roll = (rand() % sides + 1);
 		cout << dice_roll << "...\n";
 	}
+
 }
 
-
+// check for crit
 void Dice::Stat_roll(Stats &Character, int stat, int num_of_dice, int sides)
 {
 	Character.get_stat_bonus(stat);
 	roll(num_of_dice, sides);
+	
+	if (dice_roll == 20)
+	{
+		crit = true;
+		crit_fail = false;
+	}
+	else if (dice_roll == 1)
+	{
+		crit_fail = true;
+		crit = false;
+	}
+
 	if (Character.get_stat_bonus(stat) == 0)
 	{
 		cout << "Rolling a " << num_of_dice << "d" << sides << "\n";
@@ -52,42 +65,47 @@ void Dice::Attack_roll(Stats &Character, Stats &Target, string weapon)
 	get_Weapon_Properties(weapon, Character);
 	get_Weapon_Stat_Bonus(weapon, Character);
 	Stat_roll(Character, Stat, 1, 20);
+	
+	if (crit == true)
+	{
+		cout << "Critical strike on the " << Target.name << "!!!!!\n";
+	}
+	else if (crit_fail == true)
+	{
+		cout << "Critical Failure!!!!\n\n";
+	}
+
 	get_Weapon_Proficiency_And_Print_Dice(weapon, Character);
 
-
-	if (dice_roll >= Target.AC)
+	if (dice_roll >= Target.AC || crit == true)
 	{
+		cout << Character.name << " lands a hit on " << Target.name << "!\n";
 		Damage_roll(weapon, Character, Target);
 
 	}
-	// crit success and fail
-	else if (dice_roll == 20)
+	else if (dice_roll < Target.AC || crit_fail == true)
 	{
-		crit = true;
-		cout << "Critical strike on the " << Target.name << " !\n";
-	}
-	else if (dice_roll == 1)
-	{
-		crit_fail = true;
-		cout << "Critical Failure!!!!\n";
-		// make a function that can output dialogue for each type.
-		if (Target.name == "Wolf")
+		if (crit_fail == true)
 		{
-			if (Character.weapon_range >= 0 && Character.weapon_range <= 10)
-			{
-				cout << "You Miss the wolf horribly!";
-			}
-			else if (Character.weapon_range >= 60)
-			{
-				cout << "You were so off from your target that it's not even worth explaining...";
-			}
+			// make a function that can output dialogue for each enemy type.
+			if (Target.name == "Wolf")
+			{	
+				if (Character.weapon_range >= 0 && Character.weapon_range <= 10)
+				{
+					cout << "You Miss the wolf horribly!";
+				}
+				else if (Character.weapon_range >= 60)
+				{
+					cout << "You were so off from your target that it's not even worth explaining...";
+				}
+			}	
+		}
+		else
+		{
+			cout << Character.name << " missed " << Target.name << "\n\n";
 		}
 	}
-
-	else if ( dice_roll < Target.AC)
-	{
-		cout << Character.name << " missed " << Target.name << "\n\n";
-	}
+		
 }
 
 void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
@@ -99,12 +117,11 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 	// make this a function and make it a parameter that gets the input of the dice roll via an array ? assign weapon_dmg like so. if weapon_name == longbow int dmg = [1,8] then call it in a function with weapon_dmg 
 	// then make it do a dice roll for damage Stat_roll(character,weapon_dmg[0],weapondmg[1]) YOU COULD ALSO CALL WEAPON_DMG WEAPON_DICE
 	// make sure you print the dice roll then print out the diceroll + statbonus then print out the sum
-	if (Character.weapon_dmg == "1d8")
-	{
+	// implement enums?
 		if (crit == true)
 		{
 			cout << "Rolling " <<Character.name << "'s Critical Damage!!!\n";
-			roll(2, 8);
+			roll(Character.weapon_dmg[0], Character.weapon_dmg[1]);
 			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
 			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
 			cout << dice_roll << "\n";
@@ -113,37 +130,7 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 		}
 		else {
 			cout << "Rolling "<< Character.name << "'s damage  to the " << Target.name << "!\n\n";
-			roll(1, 8);
-			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
-			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
-			cout << dice_roll << "\n";
-			cout << Character.name << " deals " << dice_roll << " points of damage to the " << Target.name << "\n\n";
-			Target.HP = Target.HP - dice_roll;
-		}
-		if (Target.HP <= 0)
-		{
-			cout << Target.name << "'s HP  = 0 \n";
-		}
-
-		else
-			cout << Target.name << "'s HP  = " << Target.HP << "\n\n";
-	}
-
-	else if (Character.weapon_dmg == "2d4")
-	{
-		if (crit == true)
-		{
-			cout << "Rolling " << Character.name << "'s Critical Damage!!!\n";
-			roll(4, 4);
-			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
-			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
-			cout << dice_roll << "\n";
-			cout << Character.name << " deals " << dice_roll << " points of damage to the " << Target.name << "\n\n";
-			Target.HP = Target.HP - dice_roll;
-		}
-		else {
-			cout << "Rolling your damage! \n\n";
-			roll(2, 4);
+			roll(Character.weapon_dmg[0], Character.weapon_dmg[1]);
 			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
 			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
 			cout << dice_roll << "\n";
@@ -159,16 +146,13 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 		{
 			cout << Target.name << "'s HP  = " << Target.HP << "\n\n";
 		}
-	}
-	
-
 }
 // Move function to Stats.   Make function for dice to retrieve info?
 void Dice::get_Weapon_Properties(string weapon_name,Stats &Character)
 {
 	if (weapon_name == "Longbow")
 	{
-		Character.weapon_dmg = "1d8";
+		Character.weapon_dmg[0] = 1, Character.weapon_dmg[1] = 8;
 		Character.weapon_type = "piercing";
 		Character.weapon_stat_bonus = "Dexterity";
 		Character.weapon_catagory = "Martial";
@@ -177,7 +161,7 @@ void Dice::get_Weapon_Properties(string weapon_name,Stats &Character)
 	}
 	else if (weapon_name == "Rapier")
 	{
-		Character.weapon_dmg = "1d8";
+		Character.weapon_dmg[0] = 1; Character.weapon_dmg[1] = 8;
 		Character.weapon_type = "piercing";
 		Character.weapon_stat_bonus = "Finesse";
 		Character.weapon_range = 5;
@@ -186,7 +170,7 @@ void Dice::get_Weapon_Properties(string weapon_name,Stats &Character)
 	}
 	else if (weapon_name == "Longsword")
 	{
-		Character.weapon_dmg = "1d8";
+		Character.weapon_dmg[0] = 1; Character.weapon_dmg[1] = 8;
 		Character.weapon_type = "slashing";
 		Character.weapon_stat_bonus = "Strength";
 		Character.weapon_range = 5;
@@ -195,7 +179,7 @@ void Dice::get_Weapon_Properties(string weapon_name,Stats &Character)
 	}
 	else if (weapon_name == "Flail")
 	{
-		Character.weapon_dmg = "1d8";
+		Character.weapon_dmg[0] = 1; Character.weapon_dmg[1] = 8;
 		Character.weapon_type = "blugeoning";
 		Character.weapon_stat_bonus = "Strength";
 		Character.weapon_range = 5;
@@ -204,7 +188,7 @@ void Dice::get_Weapon_Properties(string weapon_name,Stats &Character)
 	}
 	else if (weapon_name == "Bite")
 	{
-		Character.weapon_dmg = "2d4";
+		Character.weapon_dmg[0] = 2; Character.weapon_dmg[1] = 4;
 		Character.weapon_type = "slashing";
 		Character.weapon_stat_bonus = "Dexterity";
 		Character.weapon_range = 5;
@@ -271,8 +255,8 @@ void Dice::get_Weapon_Proficiency_And_Print_Dice(string weapon, Stats &Character
 		{
 			if (Character.prof_bonus > 0)
 			{
-				cout << dice_roll << " + " << Character.prof_bonus << " (Simple Weapon Proficiency Bonus) = " << dice_roll + Character.prof_bonus << "\n";
-
+				cout << dice_roll << " + " << Character.prof_bonus << " (Simple Weapon Proficiency Bonus) = " << dice_roll + Character.prof_bonus << "\n\n";
+				dice_roll = dice_roll + Character.prof_bonus;
 			}
 		}
 	}
@@ -282,7 +266,8 @@ void Dice::get_Weapon_Proficiency_And_Print_Dice(string weapon, Stats &Character
 		{
 			if (Character.prof_bonus > 0)
 			{
-				cout << dice_roll << " + " << Character.prof_bonus << " (Martial Weapon Proficiency Bonus) = " << dice_roll + Character.prof_bonus << "\n";
+				cout << dice_roll << " + " << Character.prof_bonus << " (Martial Weapon Proficiency Bonus) = " << dice_roll + Character.prof_bonus << "\n\n";
+				dice_roll = dice_roll + Character.prof_bonus;
 			}
 
 

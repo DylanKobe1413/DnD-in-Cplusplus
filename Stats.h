@@ -20,7 +20,7 @@ private:
 
 public:
 	int Initiative = 0;
-	string weapon_dmg;
+	int weapon_dmg[2];
 	string weapon_type;
 	string weapon_catagory;
 	// to get dex strength or could be finesse

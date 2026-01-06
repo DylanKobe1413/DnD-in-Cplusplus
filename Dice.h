@@ -12,8 +12,8 @@ private:
 	int dice_roll;
 	int Stat;
 	bool print = false;
-	bool crit;
-	bool crit_fail;
+	bool crit = false;
+	bool crit_fail = false;
 public:
 	void set_dice_roll(int outcome);
 
@@ -25,7 +25,7 @@ public:
 
 	void roll(int num_of_dice, int sides);
 
-	void roll_Dice(int num_of_dice, int sides);
+	void roll_And_Print_Dice(int num_of_dice, int sides);
 	
 
 	void Stat_roll(Stats &character, int stat, int num_of_dice, int sides);
