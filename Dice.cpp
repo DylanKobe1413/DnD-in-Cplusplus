@@ -121,7 +121,7 @@ void Dice::Damage_roll(string weapon, Stats &Character, Stats &Target)
 		if (crit == true)
 		{
 			cout << "Rolling " <<Character.name << "'s Critical Damage!!!\n";
-			roll(Character.weapon_dmg[0], Character.weapon_dmg[1]);
+			roll(Character.weapon_dmg[0]*2, Character.weapon_dmg[1]);
 			cout << dice_roll << " + " << Character.get_stat_bonus(Stat) << " (Stat Bonus) = ";
 			dice_roll = dice_roll + Character.get_stat_bonus(Stat);
 			cout << dice_roll << "\n";
