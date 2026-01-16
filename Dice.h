@@ -28,14 +28,14 @@ public:
 	void roll_And_Print_Dice(int num_of_dice, int sides);
 	
 
-	void Stat_roll(Stats &character, int stat, int num_of_dice, int sides);
+	void Stat_roll_And_Print_Dice(Stats &character, int stat, int num_of_dice, int sides);
 
-
+	int Stat_roll(Stats& character, int stat, int num_of_dice, int sides);
 
 	void Attack_roll(Stats &Character, Stats &Target, string weapon);
 
 	void Damage_roll(string weapon, Stats &Character, Stats &Target);
-
+	// make these three functions under one function 
 	void get_Weapon_Properties(string weapon_name, Stats &Character);
 		
 	void get_Weapon_Stat_Bonus(string weapon, Stats &Character);

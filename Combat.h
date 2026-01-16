@@ -16,10 +16,10 @@ private:
 	bool advantage;
 	bool disadvantage;
 	//player
-	int P_attack1;
-	int P_attack2;
-	int P_move1;
-	int P_move2;
+	bool P_attack1;
+	bool P_attack2;
+	bool P_move1;
+	bool P_move2;
 	bool P_turn;
 	//enemy
 	bool E_turn;
@@ -32,7 +32,7 @@ public :
 	void check_distance(Stats &Character);
 	void StartCombat(Stats &Player, Stats &enemy, Dice dice);
 	void setEnemyBehavior(Stats &Enemy, Dice dice, Stats &Player);
-	void Set_Player_Combat_Options(int attack1, int attack2, int move1, int move2);
+	void Set_Player_Combat_Options(bool attack1, bool attack2, bool move1, bool move2);
 	void PrintPlayerCombatOptions(Stats &Player);
 	void Player_Select(Stats &Player, Stats &Enemy, Dice dice);
 	void Enemy_turn();

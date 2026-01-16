@@ -25,17 +25,8 @@ int main()
 	PlayervsWolf.set_distance(60);
 	// complier read from right to left for this instance so i put the player on the far right so they can have their initiative roll printed out first.
 	PlayervsWolf.Initiative_compare(Dice.set_Initiative(Wolf), Dice.set_Initiative(Player));
-	PlayervsWolf.Set_Player_Combat_Options(1, 1, 1, 1);
+	PlayervsWolf.Set_Player_Combat_Options(true, true, true, true);
 	PlayervsWolf.StartCombat(Player, Wolf, Dice);
-	
-
-
-
-
-
-
-
-
 
 	return 0;
 }
